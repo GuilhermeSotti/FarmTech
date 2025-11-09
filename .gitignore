@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+env/
+venv/
+.venv/
+.Python
+
+# Packages
+*.egg-info
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints
+
+# System
+.DS_Store
+
+# Local secrets
+.env
+.env.*
+aws_credentials
+*.pem
+
+# Docker
+docker-compose.override.yml
