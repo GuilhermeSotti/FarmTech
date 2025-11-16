@@ -1,29 +1,150 @@
-# Python
+# ==========================================
+# PYTHON
+# ==========================================
 __pycache__/
 *.py[cod]
+*$py.class
 *.pyo
 *.pyd
-env/
-venv/
-.venv/
-.Python
+*.pdb
 
-# Packages
-*.egg-info
+# Virtual environments
+.env
+.venv
+venv/
+ENV/
+env/
+
+# Python packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Jupyter / cache
+.ipynb_checkpoints/
+*.ipynb_convert
+.profile
+
+# Logs
+*.log
+
+# ==========================================
+# STREAMLIT
+# ==========================================
+.streamlit/
+# (exceto config)
+!/.streamlit/config.toml
+
+# ==========================================
+# R / RSTUDIO
+# ==========================================
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+.Rapp.history
+
+# Output de pacotes
+*.Rout
+*.Rproj
+
+# ==========================================
+# TERRAFORM
+# ==========================================
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/tfplan
+*.tfvars
+*.tfvars.json
+
+# Secrets (sempre ignore)
+secrets.*
+*.key
+*.pem
+
+# ==========================================
+# IoT / ARDUINO / WOKWI
+# ==========================================
+*.hex
+*.elf
+*.bin
+*.o
+*.bak
+*.dep
+*.d
+*.cache
+*.DS_Store
+
+# Arquivos gerados por compiladores
+**/build/
+**/cmake-build-*/
+
+# ==========================================
+# DOCKER
+# ==========================================
+docker/*.tar
+docker/tmp/
+.dockerignore
+
+# ==========================================
+# BASE DE DADOS / MODELOS / DATA
+# ==========================================
+data/
+datasets/
+*.db
+*.sqlite
+*.sqlite3
+*.mdb
+output/
+results/
+
+# CSV reais (exceto mocks)
+!data/mock_*.csv
+
+# Modelos pesados
+models/
+*.pkl
+*.joblib
+*.h5
+*.onnx
+*.tflite
+
+# ==========================================
+# NODE / WEB (se houver scripts front-end)
+# ==========================================
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
 dist/
 build/
 
-# Jupyter
-.ipynb_checkpoints
+# ==========================================
+# EDITOR / SO
+# ==========================================
+# VSCode
+.vscode/
+.vscode/settings.json
 
-# System
+# JetBrains
+.idea/
+
+# MacOS / Windows
 .DS_Store
+Thumbs.db
 
-# Local secrets
-.env
-.env.*
-aws_credentials
-*.pem
+# ==========================================
+# GITHUB ACTIONS (cache)
+# ==========================================
+.github/workflows/*.tmp
+.github/workflows/**/cache/
 
-# Docker
-docker-compose.override.yml
+# ==========================================
+# MISC
+# ==========================================
+*.tmp
+tmp/
+cache/
