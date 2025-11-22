@@ -1,4 +1,3 @@
-# aws/notify.py
 import os, re, uuid
 import boto3
 from botocore.exceptions import ClientError

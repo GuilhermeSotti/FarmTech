@@ -9,6 +9,7 @@ import json
 import uuid
 from pathlib import Path
 from datetime import datetime
+from component.visuals import render_visual_panels
 
 import streamlit as st
 import pandas as pd
@@ -361,6 +362,8 @@ if phase == "Dashboard Principal":
     st.write(f"Receita por sensor: **{revenue_per_sensor:,.2f}**" if revenue_per_sensor is not None else "—")
     st.write(f"Custo por sensor: **{cost_per_sensor:,.2f}**" if cost_per_sensor is not None else "—")
     st.write(f"Produção por sensor: **{production_per_sensor:,.0f} {unit_name}**" if production_per_sensor is not None else "—")
+
+    render_visual_panels(database_url=DATABASE_URL)
 
     # resumo em tabela
     summary = {
