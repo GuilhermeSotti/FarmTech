@@ -122,13 +122,6 @@ yarn-error.log
 dist/
 build/
 
-# ==========================================
-# EDITOR / SO
-# ==========================================
-# VSCode
-.vscode/
-.vscode/settings.json
-
 # JetBrains
 .idea/
 

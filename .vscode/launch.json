@@ -1,0 +1,121 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "[FARMTECH]: Main Orchestrator",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/orchestrator.py",
+            "console": "integratedTerminal",
+            "envFile": "${workspaceFolder}/.env",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true
+        },
+        {
+            "name": "[FARMTECH]: Serial Simulator (IoT)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/iot/sensores/serial_simulator.py",
+            "console": "integratedTerminal",
+            "envFile": "${workspaceFolder}/.env",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true
+        },
+        {
+            "name": "[FARMTECH]: MQTT Bridge (Data Pipeline)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/iot/mqtt_bridge.py",
+            "console": "integratedTerminal",
+            "envFile": "${workspaceFolder}/.env",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true
+        },
+        {
+            "name": "[FARMTECH]: Streamlit Dashboard",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "streamlit",
+            "args": [
+                "run",
+                "${workspaceFolder}/visualization/streamlit_app/app.py",
+                "--logger.level=debug"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": false
+        },
+        {
+            "name": "[FARMTECH]: ML Model Training",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/ml/train_model.py",
+            "console": "integratedTerminal",
+            "envFile": "${workspaceFolder}/.env",
+            "args": ["--phase", "training"],
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true
+        },
+        {
+            "name": "[FARMTECH]: ML Predictions",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/ml/predict.py",
+            "console": "integratedTerminal",
+            "envFile": "${workspaceFolder}/.env",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true
+        },
+        {
+            "name": "[FARMTECH]: AWS Notifications",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/aws/notify.py",
+            "console": "integratedTerminal",
+            "envFile": "${workspaceFolder}/.env",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true
+        },
+        {
+            "name": "[FARMTECH]: Irrigation Control",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/iot/atuadores/irrigation_control.py",
+            "console": "integratedTerminal",
+            "envFile": "${workspaceFolder}/.env",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true
+        }
+    ],
+    "compounds": [
+        {
+            "name": "[FARMTECH]: Full Stack (Serial + MQTT + Dashboard)",
+            "configurations": [
+                "[FARMTECH]: Serial Simulator (IoT)",
+                "[FARMTECH]: MQTT Bridge (Data Pipeline)",
+                "[FARMTECH]: Streamlit Dashboard"
+            ],
+            "stopOnEntry": false,
+            "preLaunchTask": ""
+        },
+        {
+            "name": "[FARMTECH]: Data Pipeline Only",
+            "configurations": [
+                "[FARMTECH]: Serial Simulator (IoT)",
+                "[FARMTECH]: MQTT Bridge (Data Pipeline)"
+            ],
+            "stopOnEntry": false
+        },
+        {
+            "name": "[FARMTECH]: ML Pipeline (Train + Predict)",
+            "configurations": [
+                "[FARMTECH]: ML Model Training",
+                "[FARMTECH]: ML Predictions"
+            ],
+            "stopOnEntry": false
+        }
+    ]
+}

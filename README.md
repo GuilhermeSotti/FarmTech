@@ -1,211 +1,117 @@
-# 🌾 FarmTech - Orquestrador Consolidado (Fase 7)
 
-Plataforma integrada de IoT, processamento de dados, machine learning e visualização para agricultura de precisão.
+# FIAP - Faculdade de Informática e Administração Paulista
 
-## 📋 Estrutura do Projeto
+<p align="center">
+  <a href="https://www.fiap.com.br/">
+    <img src="assets/logo-fiap.png" alt="FIAP - Faculdade de Informática e Administração Paulista" width="40%" />
+  </a>
+</p>
 
-```
-farmtech/
-├── iot/                     # Firmware e simulação (Arduino/ESP32, Wokwi)
-│   ├── sensores/
-│   │   ├── esp32_sensor.ino
-│   │   └── serial_simulator.py
-│   ├── atuadores/
-│   │   └── irrigation_control.py
-│   └── mqtt_bridge.py
-├── data_pipeline/           # Coleta e pré-processamento
-│   ├── serial_reader.py
-│   ├── config.py
-│   └── mqtt_bridge.py
-├── ml/                      # Machine Learning
-│   ├── train_model.py
-│   ├── predict.py
-│   ├── train_yolo.py
-│   └── utils.py
-├── visualization/           # Interface do usuário
-│   └── streamlit_app/
-│       └── app.py
-├── db/                      # Banco de dados
-│   ├── schema.sql
-│   └── data_samples/
-├── aws/                     # Infraestrutura AWS
-│   ├── notify.py
-│   └── terraform/
-├── docker/                  # Containerização
-│   ├── Dockerfile
-│   └── docker-compose.yml
-├── orchestrator.py          # Script mestre
-├── requirements.txt
-├── .env.template
-└── README.md
-```
 
-## 🚀 Quick Start
+<br>
 
-### 1. Clone e Configure
+# FarmTech
 
+## Nome do grupo: N/A
+
+## 👨‍🎓 Integrantes: 
+- Guilherme Pires de Sotti Machado
+
+## 👩‍🏫 Professores:
+### Tutor(a) 
+- [Guilherme Pires de Sotti Machado](https://www.linkedin.com/in/guilherme-pires-de-sotti-machado-296a7417a/)
+
+### Coordenador(a)
+- [Lucas Gomes Moreira](https://www.linkedin.com/in/lucas-gomes-moreira-15a8452a/)
+
+## 📜 Descrição
+
+FarmTech é um orquestrador integrado para agricultura digital que conecta sensores IoT com um pipeline de dados, modelos de machine learning e um painel operacional. O projeto captura leituras de sensores (umidade, nutrientes, temperatura) publicadas via MQTT, ingere e normaliza esses dados, persiste em CSV, processa e treina modelos preditivos (scikit-learn) e apresenta informações e controles em um dashboard em Streamlit. Além disso, o sistema pode emitir alertas por AWS SNS (e-mail/SMS/HTTP) e inclui utilitários para orquestração, logging e testes.
+
+## Video Explicativo
+- [VideoExplicativo](https://youtu.be/fjAJs3a27Vk)
+
+## 📁 Estrutura de pastas
+
+- **.github** — workflows de CI/CD e templates do GitHub
+- **assets** — imagens e recursos estáticos
+- **config** — configurações gerais e templates .env
+- **document** — documentação do projeto
+- **scripts** — scripts auxiliares (deploy, seed, migrações)
+- **src** — código-fonte geral do projeto
+- **aws/** — integrações com AWS SNS
+- **data/** — módulos para leitura, escrita e ETL
+- **db/** — dados CSV e seeds de teste
+- **iot/** — sensores, simuladores e mqtt_bridge
+- **ml/** — modelos, treinamento e inferência
+- **visualization/streamlit_app/** — dashboard Streamlit
+- **logs/** — arquivos de log
+- **requirements.txt** — dependências Python
+- **README.md** — documentação principal
+
+## 🔧 Como executar o código
+
+### Pré-requisitos
+- Python 3.10+
+- pip
+- Virtualenv / venv
+- (Opcional) Docker
+- (Opcional) AWS CLI configurada
+- (Opcional) Broker MQTT (Mosquitto ou HiveMQ)
+
+### Passos principais
+
+1. Criar ambiente virtual:
 ```bash
-cd c:\Projetos\FarmTech
-cp .env.template .env
-# Editar .env com suas credenciais
+python -m venv .venv
+source .venv/bin/activate
+# Windows:
+# .\.venv\Scriptsctivate
 ```
 
-### 2. Instalar Dependências
-
+2. Instalar dependências:
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Executar Fases
-
-#### Via CLI
+3. Iniciar mqtt_bridge:
 ```bash
-python orchestrator.py --phase iot
-python orchestrator.py --phase mqtt
-python orchestrator.py --phase streamlit
+python iot/mqtt_bridge.py
 ```
 
-#### Via VS Code Debug
-1. Abrir Debug menu (Ctrl+Shift+D)
-2. Selecionar configuração desejada
-3. Pressionar F5
-
-#### Via Docker
-```bash
-docker-compose up -d
-```
-
-## 📊 Fases do Projeto
-
-| Fase | Descrição | Status |
-|------|-----------|--------|
-| IoT | Leitura de sensores ESP32/Arduino | ✅ |
-| Data Pipeline | Ingestão via Serial/MQTT | ✅ |
-| ML | Treinamento e predição | ✅ |
-| Vision | Detecção YOLO | ✅ |
-| Dashboard | Streamlit integrado | ✅ |
-| AWS | Alertas SNS | ✅ |
-| Orchestrator | CLI consolidado | ✅ |
-
-## 🔧 Configuração
-
-Edite `.env`:
-
-```env
-DATABASE_URL=postgres://user:pass@localhost/farmdb
-MQTT_BROKER=broker.hivemq.com
-AWS_ACCESS_KEY_ID=xxx
-SNS_TOPIC_ARN=arn:aws:sns:...
-```
-
-## 📈 Machine Learning
-
-### Treinar Modelo
-```bash
-python ml/train_model.py --phase training
-```
-
-### Fazer Predições
-```bash
-python ml/predict.py
-```
-
-### YOLO Training
-```bash
-python ml/train_yolo.py
-```
-
-## 🗄️ Banco de Dados
-
-### PostgreSQL Local
-```bash
-docker run -d \
-  -e POSTGRES_USER=farmtech \
-  -e POSTGRES_PASSWORD=changeme \
-  -p 5432:5432 \
-  postgres:15
-```
-
-### Criar Schema
-```bash
-psql -U farmtech -d farmdb -f db/schema.sql
-```
-
-## 📊 Visualização
-
-Streamlit Dashboard em tempo real:
-
+4. Rodar o dashboard:
 ```bash
 streamlit run visualization/streamlit_app/app.py
 ```
 
-Acesso: http://localhost:8501
-
-## ☁️ AWS SNS
-
-Configurar tópico SNS e credenciais no `.env`:
-
+5. Treinar modelo ML:
 ```bash
-export AWS_ACCESS_KEY_ID=xxx
-export AWS_SECRET_ACCESS_KEY=yyy
-python aws/notify.py
+python ml/train_model.py
 ```
 
-## 🐳 Docker
-
-Deploy integrado:
-
+6. Enviar alerta SNS:
 ```bash
-docker-compose up --build
+python -c "from aws.notify import publish_alert; publish_alert('Teste', 'FarmTech')"
 ```
 
-Services:
-- PostgreSQL: localhost:5432
-- Streamlit: localhost:8501
+## 🗃 Histórico de lançamentos
 
-## 📱 Dispositivos Suportados
+* 1.0.0 - 2025-11-22  
+    * Integração completa das 7 fases  
+* 0.9.0 - 2025-11-16  
+    * Painel Streamlit consolidado  
+* 0.8.0 - 2025-11-12  
+    * mqtt_bridge robusto  
+* 0.5.0 - 2025-11-07  
+    * ML inicial + simuladores  
+* 0.1.0 - 2025-10-30  
+    * Protótipo básico  
 
-- **ESP32** com sensor de umidade
-- **Arduino** com múltiplos sensores
-- **Sensores MQTT** compatíveis
-- **Simulador Serial** Python
+## 📋 Licença
 
-## 📝 Exemplo de Fluxo Completo
+<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" 
+src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1">
+<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" 
+src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1">
 
-1. **IoT**: Sensor ESP32 publica em MQTT
-2. **Pipeline**: MQTT Bridge recebe e salva em CSV
-3. **ML**: Modelo treina com dados históricos
-4. **Dashboard**: Streamlit exibe em tempo real
-5. **Alertas**: SNS notifica via email se crítico
-
-## 🔍 Troubleshooting
-
-### Erro de conexão MQTT
-```
-Verificar MQTT_BROKER e MQTT_PORT no .env
-```
-
-### Erro de banco de dados
-```
-Verificar DATABASE_URL
-docker-compose up db -d (se usar Docker)
-```
-
-### Streamlit não carrega
-```
-streamlit run visualization/streamlit_app/app.py --logger.level=debug
-```
-
-## 📚 Documentação Adicional
-
-- [Terraform AWS](aws/terraform/README.md)
-- [ML Utils](ml/utils.py)
-- [Schema Banco](db/schema.sql)
-
-## 📄 Licença
-
-MIT License - FarmTech 2025
-
-## ✉️ Contato
-
-Suporte: farmtech@example.com
+FarmTech por Grupo FarmTech está licenciado sob Creative Commons — Attribution 4.0 International.

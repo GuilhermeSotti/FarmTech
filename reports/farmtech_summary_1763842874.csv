@@ -1,0 +1,16 @@
+Métrica,Valor
+Área (ha),1.0
+Produtividade (kg/ha),5000.0
+Produção total,"5,000 kg"
+Preço por kg,1.5
+Receita total,"7,500.00"
+Custo variável total,200.00
+Custo por sensor (total),0.00
+Custos fixos,100.00
+Contingência (%),5%
+Contingência (valor),15.00
+Custo total (+conting.),315.00
+Lucro total,"7,185.00"
+Lucro / ha,"7,185.00"
+ROI (%),2280.95%
+Sensores usados,0
